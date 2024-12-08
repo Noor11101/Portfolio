@@ -77,11 +77,12 @@ body {
 .social-icons a {
     display: inline-block;
     transition: all 0.3s;
+    color:#9acd32;
 }
 
 .social-icons a:hover {
     animation: pulse 0.5s;
-    color: var(--primary-color);
+    color:#a3e917;
 }
 
 /* Particle Background */
@@ -91,3 +92,19 @@ body {
     height: 100%;
     z-index: -1;
 }
+
+
+
+
+/* Contact Page */
+/* Apply a filter to the image */
+.filter-img {
+    filter: grayscale(80%); /* Grayscale effect */
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Add hover effect to restore full color */
+.filter-img:hover {
+    filter: grayscale(0); /* Remove grayscale on hover */
+}
+
