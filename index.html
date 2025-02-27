@@ -13,6 +13,18 @@
     <!-- AOS (Animate on Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .partner-logo {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- Particles Background -->
@@ -103,7 +115,28 @@
     </section> -->
 
 
-    
+    <!-- Partners/Clients Section -->
+    <section id="partners" class="py-5 bg-light">
+        <div class="container">
+            <!-- <h2 class="text-center mb-4" data-aos="fade-up">Clients</h2> -->
+            
+            
+            <div class="row justify-content-center align-items-center">
+                <div class="col-6 col-md-3 text-center mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <img src="./img/part/logo04_aware.png" alt="Partner 1" class="img-fluid partner-logo" style="max-height: 80px;">
+                </div>
+                <div class="col-6 col-md-3 text-center mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <img src="./img/part/obinoor.png" alt="Partner 2" class="img-fluid partner-logo" style="max-height: 80px;">
+                </div>
+                <div class="col-6 col-md-3 text-center mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <img src="./img/part/orca.png" alt="Partner 3" class="img-fluid partner-logo" style="max-height: 80px;">
+                </div>
+                <div class="col-6 col-md-3 text-center mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <img src="./img/part/Tikoltty_logo.png" alt="Partner 4" class="img-fluid partner-logo" style="max-height: 80px;">
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="container mb-5 mt-5">
@@ -121,6 +154,8 @@
             </div>
         </div>
     </section>
+
+    
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
         <p><span style="color:#9acd32; ">&copy;</span> 2025-2026 Noor Elhamshary. All Rights Reserved.</p>
