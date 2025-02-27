@@ -32,49 +32,46 @@
                     <li class="nav-item"><a href="./certificates.html" class="nav-link">Certificates</a></li>
                     <li class="nav-item"><a href="./project.html" class="nav-link">Projects</a></li>
                     <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
-                    
                 </ul>
             </div>
         </div>
     </nav>
 
-<!-- Contact Section -->
-<section id="contact" class="py-5">
-    <div class="container">
-        <div class="row">
-            <!-- Center the content on large screens -->
-            <div class="col-lg-6 mx-auto">
-                <h2 class="text-center mb-4" data-aos="fade-up">Git in Teach</h2>
-                
-                <!-- Image centered and responsive -->
-                <img src="../img/handshake.jpg" class="img-fluid mx-auto d-block mb-5 rounded filter-img" alt="Centered Image" data-aos="fade-up">
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Center the content on large screens -->
+                <div class="col-lg-6 mx-auto">
+                    <h2 class="text-center mb-4" data-aos="fade-up">Git in Touch</h2>
+                    
+                    <!-- Image centered and responsive -->
+                    <img src="../img/handshake.jpg" class="img-fluid mx-auto d-block mb-5 rounded filter-img" alt="Centered Image" data-aos="fade-up">
 
-                <form data-aos="fade-up" data-aos-delay="200">
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control" placeholder="Full Name" required>
+                    <form id="contact-form" data-aos="fade-up" data-aos-delay="200">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <textarea class="form-control" id="message" rows="5" placeholder="Message" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                    <div id="success-message" class="alert alert-success mt-3" style="display: none;">
+                        Message sent successfully!
                     </div>
-                    <!-- Uncomment this section if you want a mobile phone field -->
-                    <!-- <div class="form-group mb-3">
-                        <input type="tel" class="form-control" placeholder="Mobile Phone" required>
-                    </div> -->
-                    <div class="form-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email Address" required>
+                    <div id="error-message" class="alert alert-danger mt-3" style="display: none;">
+                        Failed to send message. Please try again.
                     </div>
-                    <!-- Uncomment this section if you want an email subject field -->
-                    <!-- <div class="form-group mb-3">
-                        <input type="text" class="form-control" placeholder="Subject" required>
-                    </div> -->
-                    <div class="form-group mb-3">
-                        <textarea class="form-control" rows="5" placeholder="Message" required></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
@@ -87,5 +84,60 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="../js/script.js" defer></script>
 
+    <!-- EmailJS Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your User ID
+        (function() {
+            emailjs.init("FvXm_R7q1ZFY7ABiD"); // Replace with your EmailJS User ID
+        })();
+
+        // Initialize AOS (Animate on Scroll)
+        AOS.init();
+
+        // Handle form submission
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Basic validation
+            if (!name || !email || !message) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            // Send email using EmailJS
+            emailjs.send("service_dtnfar1", "template_ftwh94a", {
+                from_name: name,
+                from_email: email,
+                message: message,
+            })
+            .then(function(response) {
+                console.log("Email sent successfully!", response);
+                document.getElementById("success-message").style.display = "block";
+                document.getElementById("error-message").style.display = "none";
+                document.getElementById("contact-form").reset(); // Reset the form
+            }, function(error) {
+                console.error("Failed to send email:", error);
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("success-message").style.display = "none";
+            });
+        });
+
+        // Function to validate email
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    </script>
 </body>
 </html>

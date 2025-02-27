@@ -75,7 +75,7 @@
 <body>
     <div id="particles-js"></div>
 
-      <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#"><span onclick="window.location.href='../index.html'" style="color:#9acd32; ">Portfolio</span> | <span onclick="window.location.href='../pages/load_data.html'" class="">Data Engineering</span></a>
@@ -89,7 +89,6 @@
                     <li class="nav-item"><a href="./certificates.html" class="nav-link">Certificates</a></li>
                     <li class="nav-item"><a href="./project.html" class="nav-link">Projects</a></li>
                     <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
-                    
                 </ul>
             </div>
         </div>
@@ -102,16 +101,17 @@
             <div class="row mb-5">
                 <div class="col text-center filter-btns">
                     <h3>Filter Projects</h3>
-                    <button type="button" class="btn btn-outline-primary m-2">All</button>
-                    <button type="button" class="btn btn-outline-primary m-2">Web Development</button>
-                    <button type="button" class="btn btn-outline-primary m-2">Machine Learning</button>
-                    <button type="button" class="btn btn-outline-primary m-2">Data Analysis</button>
+                    <button type="button" class="btn btn-outline-primary m-2" onclick="filterProjects('all')">All</button>
+                    <button type="button" class="btn btn-outline-primary m-2" onclick="filterProjects('web')">Web Development</button>
+                    <button type="button" class="btn btn-outline-primary m-2" onclick="filterProjects('ml')">Machine Learning</button>
+                    <button type="button" class="btn btn-outline-primary m-2" onclick="filterProjects('data')">Data Analysis</button>
                 </div>
             </div>
 
             <!-- Project Cards Grid -->
-            <div  class="row row-cols-1 row-cols-md-3 g-4">
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+            <div id="project-grid" class="row row-cols-1 row-cols-md-3 g-4">
+                <!-- Project cards will be dynamically filtered here -->
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="web">
                     <div class="card project-card">
                         <img src="../img/Screenshot_obinoor.png" class="card-img-top" alt="Project 1">
                         <div class="card-body">
@@ -122,7 +122,7 @@
                     </div>
                 </div>
 
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="data">
                     <div class="card project-card">
                         <img src="../img/cars.jpg" class="card-img-top" alt="Project 5">
                         <div class="card-body">
@@ -133,11 +133,7 @@
                     </div>
                 </div>
 
-                
-
-                
-
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="data">
                     <div class="card project-card">
                         <img src="../img/dashbord.jpg" class="card-img-top" alt="Project 4">
                         <div class="card-body">
@@ -148,7 +144,7 @@
                     </div>
                 </div>
 
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="ml">
                     <div  class="card project-card">
                         <img src="../img/dataset.jpg" class="card-img-top" alt="Project 6">
                         <div class="card-body">
@@ -159,7 +155,7 @@
                     </div>
                 </div>
 
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="ml">
                     <div class="card project-card">
                         <img src="../img/Diagnostic_Program.jpg" class="card-img-top" alt="Project 3">
                         <div class="card-body">
@@ -170,9 +166,7 @@
                     </div>
                 </div>
 
-                
-
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="web">
                     <div class="card project-card">
                         <img src="../img/aaron-burden-CKlHKtCJZKk-unsplash.jpg" class="card-img-top" alt="Project 5">
                         <div class="card-body">
@@ -183,8 +177,7 @@
                     </div>
                 </div>
 
-                
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="data">
                     <div class="card project-card">
                         <img src="../img/dataset-cover.jpg" class="card-img-top" alt="Project 5">
                         <div class="card-body">
@@ -195,10 +188,9 @@
                     </div>
                 </div>
 
-                <div data-aos="fade-up" data-aos-delay="400" class="col">
+                <div data-aos="fade-up" data-aos-delay="400" class="col" data-category="web">
                     <div class="card project-card">
                         <img src="../img/zakat-.jpg" class="card-img-top" alt="Project 2" height="200px"> 
-                         
                         <div class="card-body">
                             <h5 class="card-title">Zakat</h5>
                             <p class="card-text">The "Gold Zakat Calculation" project helps individuals calculate their gold zakat based on weight and current price, considering the legal minimum threshold and the 2.5% rate.</p>
@@ -206,8 +198,6 @@
                         </div>
                     </div>
                 </div>
-
-                
             </div>
 
             <!-- Pagination -->
@@ -237,10 +227,39 @@
     </footer>
 
     <!-- Bootstrap JS -->
-     <!-- Libraries -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-     <script src="../js/script.js" defer></script>
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../js/script.js" defer></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS (Animate on Scroll)
+        AOS.init();
+
+        // Function to filter projects based on category
+        function filterProjects(category) {
+            const projects = document.querySelectorAll('#project-grid .col');
+            projects.forEach(project => {
+                const projectCategory = project.getAttribute('data-category');
+                if (category === 'all' || projectCategory === category) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to handle pagination
+        document.querySelectorAll('.pagination .page-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = e.target.textContent;
+                alert(`Navigating to page ${page}`);
+                // You can add logic here to load the corresponding page content
+            });
+        });
+    </script>
 </body>
 </html>
